@@ -1,6 +1,10 @@
 <script lang="ts">
-  const searchList = ({ target }) => {
-    console.dir(target.value)
+  import { request } from '$lib/useFunction'
+
+  const searchList = async ({ target }) => {
+    const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
+    const response = await request<string[]>(`${BASE_URI}/languages?keyword=${target.value}`)
+    console.log(response)
   }
 </script>
 
