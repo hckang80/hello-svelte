@@ -1,3 +1,9 @@
+<script lang="ts">
+  const searchList = ({ target }) => {
+    console.dir(target.value)
+  }
+</script>
+
 <main class="Search">
   <form
     class="search-form">
@@ -5,6 +11,7 @@
       type="text"
       placeholder="프로그래밍 언어를 입력하세요."
       class="search-form__input"
+      on:input={searchList}
     />
   </form>
 </main>
