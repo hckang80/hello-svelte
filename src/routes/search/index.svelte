@@ -1,9 +1,11 @@
 <script lang="ts">
   import { request } from '$lib/useFunction'
 
-  const searchList = async ({ target }) => {
+  let keyword = ''
+
+  const searchList = async () => {
     const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
-    const response = await request<string[]>(`${BASE_URI}/languages?keyword=${target.value}`)
+    const response = await request<string[]>(`${BASE_URI}/languages?keyword=${keyword}`)
     console.log(response)
   }
 </script>
@@ -15,6 +17,7 @@
       type="text"
       placeholder="프로그래밍 언어를 입력하세요."
       class="search-form__input"
+      bind:value={keyword}
       on:input={searchList}
     />
   </form>
