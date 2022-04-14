@@ -1,6 +1,6 @@
 export const { localStorage: storage } = window
 
-export const getItem = <T = string> (key: string): T => {
+export const getItem = <T = string>(key: string): T => {
   try {
     const value = storage.getItem(key)
     return value ? JSON.parse(value) : ''
@@ -26,7 +26,7 @@ export const removeItem = (key: string) => {
 }
 
 
-export const request = async<T> (url = '', options = {}): Promise<T> => {
+export const request = async<T>(url = '', options = {}): Promise<T> => {
   try {
     const response = await fetch(url, options)
     if (response.ok) return await response.json()
