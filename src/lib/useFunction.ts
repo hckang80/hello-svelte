@@ -1,15 +1,15 @@
 export const { localStorage: storage } = window
 
-export const getItem = (key) => {
+export const getItem = <T = string> (key: string): T => {
   try {
     const value = storage.getItem(key)
     return value ? JSON.parse(value) : ''
   } catch {
-    return ''
+    return
   }
 }
 
-export const setItem = (key, value) => {
+export const setItem = (key: string, value: unknown) => {
   try {
     storage.setItem(key, JSON.stringify(value))
   } catch {
@@ -17,7 +17,7 @@ export const setItem = (key, value) => {
   }
 }
 
-export const removeItem = (key) => {
+export const removeItem = (key: string) => {
   try {
     storage.removeItem(key)
   } catch {

@@ -7,7 +7,7 @@
     if (!keyword) return []
     const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
     const response =
-      getItem(keyword) ||
+      getItem<string[]>(keyword) ||
       await request<string[]>(`${BASE_URI}/languages?keyword=${keyword}`)
     !getItem(keyword) && setItem(keyword, response)
     console.log(response)
