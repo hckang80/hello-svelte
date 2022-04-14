@@ -32,6 +32,6 @@ export const request = async<T>(url = '', options = {}): Promise<T> => {
     if (response.ok) return await response.json()
     throw new Error('HTTP REQUEST FAILED')
   } catch (error) {
-    console.error(error)
+    throw new Error(error)
   }
 }
