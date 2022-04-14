@@ -1,11 +1,14 @@
 <script lang="ts">
-  import { request } from '$lib/useFunction'
+  import { getItem, setItem, request } from '$lib/useFunction'
 
   let keyword = ''
 
   const searchList = async () => {
     const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
-    const response = await request<string[]>(`${BASE_URI}/languages?keyword=${keyword}`)
+    const response =
+      getItem(keyword) ||
+      await request<string[]>(`${BASE_URI}/languages?keyword=${keyword}`)
+    !getItem(keyword) && setItem(keyword, response)
     console.log(response)
   }
 </script>
