@@ -3,6 +3,8 @@
 
   let keyword = ''
 
+  let searchedList = []
+
   const searchList = async () => {
     if (!keyword) return []
     const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
@@ -10,7 +12,7 @@
       getItem<string[]>(keyword) ||
       await request<string[]>(`${BASE_URI}/languages?keyword=${keyword}`)
     !getItem(keyword) && setItem(keyword, response)
-    console.log(response)
+    searchedList = response
   }
 </script>
 
@@ -25,6 +27,8 @@
       on:input={searchList}
     />
   </form>
+
+  {searchedList}
 </main>
 
 <style>
