@@ -6,7 +6,7 @@
   let searchedList = []
 
   const searchList = async () => {
-    if (!keyword) return []
+    if (!keyword) return searchedList = []
     const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
     const response =
       getItem<string[]>(keyword) ||
@@ -28,7 +28,17 @@
     />
   </form>
 
-  {searchedList}
+  {#if searchedList.length}
+  <div class="searched-list">
+    <ul class="suggestion">
+      {#each searchedList as item}
+        <li class="suggestion__item--selected">
+          {item}
+        </li>
+      {/each}
+    </ul>
+  </div>
+  {/if}
 </main>
 
 <style>
