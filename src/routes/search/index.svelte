@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { getItem, setItem, request } from '$lib/useFunction'
+  import { debounce, getItem, setItem, request } from '$lib/useFunction'
 
   let keyword = ''
 
   let searchedList = []
 
-  const searchList = async () => {
+  const searchList = debounce(async () => {
     if (!keyword) return searchedList = []
     const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
     const response =
@@ -13,7 +13,7 @@
       await request<string[]>(`${BASE_URI}/languages?keyword=${keyword}`)
     !getItem(keyword) && setItem(keyword, response)
     searchedList = response
-  }
+  }, 500)
 </script>
 
 <main class="Search">
