@@ -25,6 +25,15 @@ export const removeItem = (key: string) => {
   }
 }
 
+export const debounce = (callback, limit = 100) => {
+  let timeout: NodeJS.Timeout
+  return function (...args: unknown[]) {
+    clearTimeout(timeout)
+    timeout = setTimeout(() => {
+      callback.apply(this, args)
+    }, limit)
+  }
+}
 
 export const request = async<T>(url = '', options = {}): Promise<T> => {
   try {
