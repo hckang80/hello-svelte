@@ -5,6 +5,10 @@
 
   let searchedList = []
 
+  let selected = {
+    index: null
+  }
+
   const searchList = debounce(async () => {
     if (!keyword) return searchedList = []
     const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
@@ -14,6 +18,10 @@
     !getItem(keyword) && setItem(keyword, response)
     searchedList = response
   }, 500)
+
+  const selectList = (index) => {
+    selected.index = index
+  }
 </script>
 
 <main class="Search">
@@ -31,8 +39,10 @@
   {#if searchedList.length}
   <div class="searched-list">
     <ul class="suggestion">
-      {#each searchedList as item}
-        <li class="suggestion__item--selected">
+      {#each searchedList as item, index}
+        <li
+          class="{selected.index === index && 'suggestion__item--selected'}"
+          on:click={() => selectList(index)}>
           {item}
         </li>
       {/each}
