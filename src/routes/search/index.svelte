@@ -7,7 +7,8 @@
   let searchedList = []
 
   let selected = {
-    index: null
+    index: null,
+    list: []
   }
 
   const searchList = debounce && debounce(async () => {
@@ -26,6 +27,14 @@
 </script>
 
 <main class="Search">
+  <div class="selected-list">
+    <ul>
+      {#each selected.list as item}
+        <li>{item}</li>
+      {/each}
+    </ul>
+  </div>
+
   <form
     class="search-form">
     <input
