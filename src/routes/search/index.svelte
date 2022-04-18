@@ -9,7 +9,7 @@
     index: null
   }
 
-  const searchList = debounce(async () => {
+  const searchList = debounce && debounce(async () => {
     if (!keyword) return searchedList = []
     const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
     const response =
