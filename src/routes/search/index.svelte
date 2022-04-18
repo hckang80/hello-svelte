@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fade } from 'svelte/transition'
   import { debounce, getItem, setItem, request } from '$lib/useFunction'
 
   let keyword = ''
@@ -37,7 +38,7 @@
   </form>
 
   {#if searchedList.length}
-  <div class="searched-list">
+  <div transition:fade="{{ duration: 100 }}" class="searched-list">
     <ul class="suggestion">
       {#each searchedList as item, index}
         <li
