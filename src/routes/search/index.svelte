@@ -7,8 +7,12 @@
   let searchedList = []
 
   let selected = {
-    index: null,
+    index: null as number,
     list: [] as unknown[]
+  }
+
+  const resetSelectedIndex = () => {
+    typeof selected.index === 'number' && (selected.index = null)
   }
 
   const searchList = debounce && debounce(async () => {
@@ -18,6 +22,7 @@
       getItem<string[]>(keyword) ||
       await request<string[]>(`${BASE_URI}/languages?keyword=${keyword}`)
     !getItem(keyword) && setItem(keyword, response)
+    resetSelectedIndex()
     searchedList = response
   }, 500)
 
