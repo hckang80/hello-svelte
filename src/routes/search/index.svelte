@@ -39,7 +39,7 @@
   }
 </script>
 
-<main class="Search">
+<div class="Search">
   <div class="selected-list">
     <ul>
       {#each selected.list as item}
@@ -72,16 +72,16 @@
     </ul>
   </div>
   {/if}
-</main>
+</div>
 
 <style>
 .Search {
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 100vh;
   justify-content: center;
   align-items: center;
+  padding-top: 50px;
 }
 
 .search-form {
@@ -98,11 +98,12 @@
 }
 
 .searched-list {
-  position: absolute;
+  position: relative;
   font-size: 20px;
   width: 300px;
-  top: 50%;
+  top: 100%;
   z-index: 1;
+  margin-top: 10px;
   padding: 10px;
   border-radius: 24px;
   border: 1px solid black;
@@ -130,11 +131,7 @@
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  flex-wrap: nowrap;
-  height: 37.5px;
-  margin-top: -100px;
   margin-bottom: 10px;
-
 }
 
 .selected-list li {
