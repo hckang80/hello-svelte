@@ -8,12 +8,12 @@
 
   let selected = {
     index: null,
-    list: []
+    list: [] as unknown[]
   }
 
   const searchList = debounce && debounce(async () => {
     if (!keyword) return searchedList = []
-    const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
+    const BASE_URI = 'h as numberttps://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
     const response =
       getItem<string[]>(keyword) ||
       await request<string[]>(`${BASE_URI}/languages?keyword=${keyword}`)
@@ -21,8 +21,16 @@
     searchedList = response
   }, 500)
 
-  const selectList = (index) => {
-    selected.index = index
+  const toValidSelectList = (index: number): string[] => {
+    const list = [...selected.list, searchedList[index]]
+    return list
+  }
+
+  const selectList = (index: number) => {
+    selected = {
+      index,
+      list: toValidSelectList(index)
+    }
   }
 </script>
 
