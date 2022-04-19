@@ -26,7 +26,13 @@
     searchedList = response
   }, 500)
 
+  const deleteItem = (item) => {
+    selected.list.splice(selected.list.indexOf(item), 1)
+  }
+
   const toValidSelectList = (index: number): string[] => {
+    const hasItem = selected.list.includes(searchedList[index])
+    hasItem && deleteItem(searchedList[index])
     const list = [...selected.list, searchedList[index]]
     return list
   }
