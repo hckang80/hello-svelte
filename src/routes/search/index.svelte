@@ -4,11 +4,11 @@
 
   let keyword = ''
 
-  let searchedList = []
+  let searchedList: string[] = []
 
   let selected = {
     index: null as number,
-    list: [] as unknown[]
+    list: [] as string[]
   }
 
   const resetSelectedIndex = () => {
