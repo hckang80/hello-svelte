@@ -44,6 +44,16 @@
       list: toValidSelectList(index)
     }
   }
+
+	let key;
+	let keyCode;
+
+	function handleKeydown(event) {
+		key = event.key;
+		keyCode = event.keyCode;
+
+    console.log({ key, keyCode })
+	}
 </script>
 
 <div class="Search">
@@ -80,6 +90,8 @@
   </div>
   {/if}
 </div>
+
+<svelte:window on:keydown={handleKeydown}/>
 
 <style>
 .Search {
