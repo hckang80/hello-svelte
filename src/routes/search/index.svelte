@@ -53,7 +53,16 @@
 		key = event.key;
 		keyCode = event.keyCode;
 
-    console.log({ key, keyCode })
+    if (key === 'ArrowUp') {
+      selected.index <= 0 &&
+        (selected.index = searchedList.length)
+      selected.index -= 1
+    }
+    if (key === 'ArrowDown') {
+      selected.index === searchedList.length - 1 &&
+        (selected.index = -1)
+      selected.index += 1
+    }
 	}
 </script>
 
