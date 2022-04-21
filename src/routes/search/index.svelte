@@ -61,6 +61,10 @@
         (selected.index = -1)
       selected.index += 1
     }
+    if (key === 'Enter') {
+      event.preventDefault()
+      selectList(selected.index)
+    }
 	}
 </script>
 
