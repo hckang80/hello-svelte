@@ -63,7 +63,7 @@
     }
     if (key === 'Enter') {
       event.preventDefault()
-      selectList(selected.index)
+      selected.index >= 0 && selectList(selected.index)
     }
 	}
 </script>
