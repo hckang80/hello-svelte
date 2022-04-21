@@ -14,7 +14,7 @@
   }
 
   const resetSelectedIndex = () => {
-    typeof selected.index === 'number' && (selected.index = -1)
+    selected.index >= 0 && (selected.index = -1)
   }
 
   const searchList = debounce && debounce(async () => {
