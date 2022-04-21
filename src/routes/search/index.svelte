@@ -49,6 +49,7 @@
 	let keyCode;
 
 	function handleKeydown(event) {
+    if (!searchedList.length) return
 		key = event.key;
 		keyCode = event.keyCode;
 
