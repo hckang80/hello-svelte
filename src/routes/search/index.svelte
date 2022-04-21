@@ -2,6 +2,8 @@
   import { fade } from 'svelte/transition'
   import { debounce, getItem, setItem, request } from '$lib/useFunction'
 
+  import SelectedList from './SelectedList.svelte'
+
   let keyword = ''
 
   let searchedList: string[] = []
@@ -66,13 +68,7 @@
 </script>
 
 <div class="Search">
-  <div class="selected-list">
-    <ul>
-      {#each selected.list as item}
-        <li>{item}</li>
-      {/each}
-    </ul>
-  </div>
+  <SelectedList list={selected.list} />
 
   <form
     on:submit|preventDefault={() => {}}
@@ -154,24 +150,5 @@
 
 .suggestion__item--matched {
   background-color: #9AE6B4;
-}
-
-.selected-list {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  margin-bottom: 10px;
-}
-
-.selected-list li {
-  display: inline-block;
-  margin: 0 2px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  max-width: 100px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
 }
 </style>
