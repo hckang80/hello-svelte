@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { fade } from 'svelte/transition'
   import { debounce, getItem, setItem, request } from '$lib/useFunction'
 
   import SelectedList from './SelectedList.svelte'
+  import SearchedList from './SearchedList.svelte'
 
   let keyword = ''
 
@@ -83,17 +83,11 @@
   </form>
 
   {#if searchedList.length}
-  <div transition:fade="{{ duration: 100 }}" class="searched-list">
-    <ul class="suggestion">
-      {#each searchedList as item, index}
-        <li
-          class="{selected.index === index && 'suggestion__item--selected'}"
-          on:click={() => selectList(index)}>
-          {item}
-        </li>
-      {/each}
-    </ul>
-  </div>
+  <SearchedList
+    searchedList={searchedList}
+    selectedIndex={selected.index}
+    selectList={selectList}
+  />
   {/if}
 </div>
 
@@ -120,35 +114,5 @@
   padding: 10px 24px;
   font-size: 20px;
   color: var(--color-dark);
-}
-
-.searched-list {
-  position: relative;
-  font-size: 20px;
-  width: 300px;
-  top: 100%;
-  z-index: 1;
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 24px;
-  border: 1px solid black;
-}
-
-.searched-list li {
-  padding: 10px;
-  cursor: pointer;
-  width: 100%;
-}
-
-.suggestion li:hover {
-  background-color: #90CDF4;
-}
-
-.suggestion__item--selected {
-  background-color: #BEE3F8;
-}
-
-.suggestion__item--matched {
-  background-color: #9AE6B4;
 }
 </style>
