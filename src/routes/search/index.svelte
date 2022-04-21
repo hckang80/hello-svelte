@@ -7,12 +7,12 @@
   let searchedList: string[] = []
 
   let selected = {
-    index: null as number,
+    index: -1 as number,
     list: [] as string[]
   }
 
   const resetSelectedIndex = () => {
-    typeof selected.index === 'number' && (selected.index = null)
+    typeof selected.index === 'number' && (selected.index = -1)
   }
 
   const searchList = debounce && debounce(async () => {
