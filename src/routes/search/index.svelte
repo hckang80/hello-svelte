@@ -47,23 +47,26 @@
     }
   }
 
-	function handleKeydown({ key }) {
+	function handleKeydown(event) {
     if (!searchedList.length) return
 
-    if (key === 'ArrowUp') {
-      selected.index <= 0 &&
-        (selected.index = searchedList.length)
-      selected.index -= 1
+    const events = {
+      ArrowUp: () => {
+        selected.index <= 0 &&
+          (selected.index = searchedList.length)
+        selected.index -= 1
+      },
+      ArrowDown: () => {
+        selected.index === searchedList.length - 1 &&
+          (selected.index = -1)
+        selected.index += 1
+      },
+      Enter: () => {
+        event.preventDefault()
+        selected.index >= 0 && selectList(selected.index)
+      }
     }
-    if (key === 'ArrowDown') {
-      selected.index === searchedList.length - 1 &&
-        (selected.index = -1)
-      selected.index += 1
-    }
-    if (key === 'Enter') {
-      event.preventDefault()
-      selected.index >= 0 && selectList(selected.index)
-    }
+    events[event.key] && events[event.key]()
 	}
 </script>
 
@@ -113,6 +116,5 @@
   border-radius: 24px;
   padding: 10px 24px;
   font-size: 20px;
-  color: var(--color-dark);
 }
 </style>
