@@ -45,13 +45,11 @@
     }
   }
 
-	let key;
-	let keyCode;
+	let key
 
 	function handleKeydown(event) {
     if (!searchedList.length) return
-		key = event.key;
-		keyCode = event.keyCode;
+		key = event.key
 
     if (key === 'ArrowUp') {
       selected.index <= 0 &&
