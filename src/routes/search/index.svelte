@@ -87,9 +87,9 @@
 
   {#if searchedList.length}
   <SearchedList
-    searchedList={searchedList}
+    {searchedList}
     selectedIndex={selected.index}
-    selectList={selectList}
+    {selectList}
   />
   {/if}
 </div>
