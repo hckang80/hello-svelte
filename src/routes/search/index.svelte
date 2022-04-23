@@ -13,8 +13,10 @@
     list: [] as string[]
   }
 
+  $: hasSelectedItem = selected.index >= 0
+
   const resetSelectedIndex = () => {
-    selected.index >= 0 && (selected.index = -1)
+    hasSelectedItem && (selected.index = -1)
   }
 
   const searchList = debounce && debounce(async () => {
@@ -63,7 +65,7 @@
       },
       Enter: () => {
         event.preventDefault()
-        selected.index >= 0 && selectList(selected.index)
+        hasSelectedItem && selectList(selected.index)
       }
     }
     events[event.key] && events[event.key]()
