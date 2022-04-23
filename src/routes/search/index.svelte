@@ -19,7 +19,7 @@
     hasSelectedItem && (selected.index = -1)
   }
 
-  const searchList = debounce && debounce(async () => {
+  const searchList = debounce?.(async () => {
     if (!keyword) return searchedList = []
     const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
     const response =
@@ -68,7 +68,7 @@
         hasSelectedItem && selectList(selected.index)
       }
     }
-    events[event.key] && events[event.key]()
+    events[event.key]?.()
 	}
 </script>
 
