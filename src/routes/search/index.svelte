@@ -4,19 +4,21 @@
   import SelectedList from './SelectedList.svelte'
   import SearchedList from './SearchedList.svelte'
 
+  const DEFAULT_SELETED_INDEX = -1
+
   let keyword = ''
 
   let searchedList: string[] = []
 
   let selected = {
-    index: -1 as number,
+    index: DEFAULT_SELETED_INDEX as number,
     list: [] as string[]
   }
 
   $: hasSelectedItem = selected.index >= 0
 
   const resetSelectedIndex = () => {
-    hasSelectedItem && (selected.index = -1)
+    hasSelectedItem && (selected.index = DEFAULT_SELETED_INDEX)
   }
 
   const searchList = debounce?.(async () => {
@@ -60,7 +62,7 @@
       },
       ArrowDown: () => {
         selected.index === searchedList.length - 1 &&
-          (selected.index = -1)
+          (selected.index = DEFAULT_SELETED_INDEX)
         selected.index += 1
       },
       Enter: () => {
