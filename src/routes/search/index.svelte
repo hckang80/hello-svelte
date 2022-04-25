@@ -17,6 +17,7 @@
   }
 
   $: hasSelectedItem = selected.index >= 0
+  $: cashedList = getItem(keyword) as string[]
 
   const resetSelectedIndex = () => {
     hasSelectedItem && (selected.index = DEFAULT_SELETED_INDEX)
@@ -24,7 +25,6 @@
 
   const searchList = debounce?.(async () => {
     if (!keyword) return searchedList = []
-    const cashedList: string[] = getItem(keyword)
     const response =
       cashedList ||
       await request<string[]>(`${BASE_URI}/languages?keyword=${keyword}`)
