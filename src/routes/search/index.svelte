@@ -24,10 +24,11 @@
 
   const searchList = debounce?.(async () => {
     if (!keyword) return searchedList = []
+    const cashedList: string[] = getItem(keyword)
     const response =
-      getItem<string[]>(keyword) ||
+      cashedList ||
       await request<string[]>(`${BASE_URI}/languages?keyword=${keyword}`)
-    !getItem(keyword) && setItem(keyword, response)
+    !cashedList && setItem(keyword, response)
     resetSelectedIndex()
     searchedList = response
   }, 500)
