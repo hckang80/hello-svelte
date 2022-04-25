@@ -39,7 +39,6 @@
 
   const toValidSelectList = (index: number): string[] => {
     const hasItem = selected.list.includes(searchedList[index])
-    console.log(hasItem)
     const LIMIT = 5
     hasItem && deleteItem(searchedList[index])
     const list = [...selected.list, searchedList[index]].slice(-1 * LIMIT)
