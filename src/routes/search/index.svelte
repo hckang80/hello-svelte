@@ -17,7 +17,7 @@
   }
 
   $: hasSelectedItem = selected.index >= 0
-  $: cashedList = getItem(keyword) as string[]
+  $: cashedList = getItem?.(keyword) as string[]
 
   const resetSelectedIndex = () => {
     hasSelectedItem && (selected.index = DEFAULT_SELETED_INDEX)
@@ -39,6 +39,7 @@
 
   const toValidSelectList = (index: number): string[] => {
     const hasItem = selected.list.includes(searchedList[index])
+    console.log(hasItem)
     const LIMIT = 5
     hasItem && deleteItem(searchedList[index])
     const list = [...selected.list, searchedList[index]].slice(-1 * LIMIT)
