@@ -5,6 +5,7 @@
   import SearchedList from './SearchedList.svelte'
 
   const DEFAULT_SELETED_INDEX = -1
+  const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
 
   let keyword = ''
 
@@ -23,7 +24,6 @@
 
   const searchList = debounce?.(async () => {
     if (!keyword) return searchedList = []
-    const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
     const response =
       getItem<string[]>(keyword) ||
       await request<string[]>(`${BASE_URI}/languages?keyword=${keyword}`)
