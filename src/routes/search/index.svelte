@@ -76,6 +76,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Search</title>
+</svelte:head>
+
 <div class="Search">
   <SelectedList list={selected.list} />
 
