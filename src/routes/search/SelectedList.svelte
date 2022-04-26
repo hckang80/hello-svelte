@@ -1,11 +1,21 @@
 <script type="ts">
+import { flip } from 'svelte/animate'
+
 export let list
+export let send
+export let receive
 </script>
 
 <div class="selected-list">
   <ul>
-    {#each list as item}
-      <li>{item}</li>
+    {#each list as item (item)}
+      <li
+        in:receive="{{key: item}}"
+        out:send="{{key: item}}"
+        animate:flip={{ duration: 200 }}
+      >
+        {item}
+      </li>
     {/each}
   </ul>
 </div>

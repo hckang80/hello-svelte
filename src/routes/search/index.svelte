@@ -1,8 +1,28 @@
 <script lang="ts">
   import { debounce, getItem, setItem, request } from '$lib/useFunction'
+	import { quintOut } from 'svelte/easing'
+	import { crossfade } from 'svelte/transition'
 
   import SelectedList from './SelectedList.svelte'
   import SearchedList from './SearchedList.svelte'
+
+  const [send, receive] = crossfade({
+		duration: d => Math.sqrt(d * 200),
+
+		fallback(node) {
+			const style = getComputedStyle(node)
+			const transform = style.transform === 'none' ? '' : style.transform
+
+			return {
+				duration: 600,
+				easing: quintOut,
+				css: t => `
+					transform: ${transform} scale(${t});
+					opacity: ${t};
+				`
+			}
+		}
+	})
 
   const DEFAULT_SELETED_INDEX = -1
   const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
@@ -80,7 +100,7 @@
 </svelte:head>
 
 <div class="Search">
-  <SelectedList list={selected.list} />
+  <SelectedList {send} {receive} list={selected.list} />
 
   <form
     on:submit|preventDefault={() => {}}
