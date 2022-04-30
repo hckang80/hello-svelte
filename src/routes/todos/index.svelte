@@ -79,12 +79,12 @@
 	.todos {
 		width: 100%;
 		max-width: var(--column-width);
-		margin: var(--column-margin-top) auto 0 auto;
+		margin: var(--column-margin-top) auto 0;
 		line-height: 1;
 	}
 
 	.new {
-		margin: 0 0 0.5rem 0;
+		margin: 0 0 0.5rem;
 	}
 
 	input {
@@ -100,7 +100,7 @@
 	.new input {
 		font-size: 28px;
 		width: 100%;
-		padding: 0.5em 1em 0.3em 1em;
+		padding: 0.5em 1em 0.3em;
 		box-sizing: border-box;
 		background: rgba(255, 255, 255, 0.05);
 		border-radius: 8px;
@@ -112,7 +112,7 @@
 		grid-template-columns: 2rem 1fr 2rem;
 		grid-gap: 0.5rem;
 		align-items: center;
-		margin: 0 0 0.5rem 0;
+		margin: 0 0 0.5rem;
 		padding: 0.5rem;
 		background-color: white;
 		border-radius: 8px;
