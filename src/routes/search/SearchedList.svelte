@@ -1,7 +1,7 @@
 <script>
 import { fade } from 'svelte/transition'
+import { searchedList } from '../../stores'
 
-export let searchedList
 export let selectedIndex
 export let selectList
 </script>
@@ -9,7 +9,7 @@ export let selectList
 
 <div transition:fade="{{ duration: 100 }}" class="searched-list">
   <ul class="suggestion">
-    {#each searchedList as item, index}
+    {#each $searchedList as item, index}
       <li
         class="{selectedIndex === index && 'suggestion__item--selected'}"
         on:click={() => selectList(index)}>

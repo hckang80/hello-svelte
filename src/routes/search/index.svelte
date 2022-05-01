@@ -2,6 +2,7 @@
   import { debounce, getItem, setItem, request } from '$lib/useFunction'
 	import { quintOut } from 'svelte/easing'
 	import { crossfade } from 'svelte/transition'
+  import { searchedList } from '../../stores'
 
   import SelectedList from './SelectedList.svelte'
   import SearchedList from './SearchedList.svelte'
@@ -29,8 +30,6 @@
 
   let keyword = ''
 
-  let searchedList: string[] = []
-
   let selected = {
     index: DEFAULT_SELETED_INDEX as number,
     list: [] as string[]
@@ -44,13 +43,13 @@
   }
 
   const searchList = debounce?.(async () => {
-    if (!keyword) return searchedList = []
+    if (!keyword) return searchedList.set([])
     const response =
       cashedList ||
       await request<string[]>(`${BASE_URI}/languages?keyword=${keyword}`)
     !cashedList && setItem(keyword, response)
     resetSelectedIndex()
-    searchedList = response
+    searchedList.set(response)
   }, 500)
 
   const deleteItem = (item) => {
@@ -58,10 +57,10 @@
   }
 
   const toValidSelectList = (index: number): string[] => {
-    const hasItem = selected.list.includes(searchedList[index])
+    const hasItem = selected.list.includes($searchedList[index])
     const LIMIT = 5
-    hasItem && deleteItem(searchedList[index])
-    const list = [...selected.list, searchedList[index]].slice(-1 * LIMIT)
+    hasItem && deleteItem($searchedList[index])
+    const list = [...selected.list, $searchedList[index]].slice(-1 * LIMIT)
     return list
   }
 
@@ -73,16 +72,16 @@
   }
 
 	function handleKeydown(event) {
-    if (!searchedList.length) return
+    if (!$searchedList.length) return
 
     const events = {
       ArrowUp: () => {
         selected.index <= 0 &&
-          (selected.index = searchedList.length)
+          (selected.index = $searchedList.length)
         selected.index -= 1
       },
       ArrowDown: () => {
-        selected.index === searchedList.length - 1 &&
+        selected.index === $searchedList.length - 1 &&
           (selected.index = DEFAULT_SELETED_INDEX)
         selected.index += 1
       },
@@ -114,9 +113,8 @@
     />
   </form>
 
-  {#if searchedList.length}
+  {#if $searchedList.length}
   <SearchedList
-    {searchedList}
     selectedIndex={selected.index}
     {selectList}
   />
