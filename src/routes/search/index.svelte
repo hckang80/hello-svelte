@@ -52,9 +52,9 @@
     searchedList.set(response)
   }, 500)
 
-  const deleteItem = (item) => {
+  const deletedItem = (item: string) => {
     const slicePoint = selected.list.indexOf(item)
-    selected.list = [
+    return [
       ...selected.list.slice(0, slicePoint),
       ...selected.list.slice(slicePoint + 1, selected.list.length)
     ]
@@ -63,8 +63,7 @@
   const toValidSelectList = (index: number): string[] => {
     const hasItem = selected.list.includes($searchedList[index])
     const LIMIT = 5
-    hasItem && deleteItem($searchedList[index])
-    const list = [...selected.list, $searchedList[index]].slice(-1 * LIMIT)
+    const list = [...(hasItem ? deletedItem($searchedList[index]) : selected.list), $searchedList[index]].slice(-1 * LIMIT)
     return list
   }
 
