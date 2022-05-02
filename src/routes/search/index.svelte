@@ -53,7 +53,11 @@
   }, 500)
 
   const deleteItem = (item) => {
-    selected.list.splice(selected.list.indexOf(item), 1)
+    const slicePoint = selected.list.indexOf(item)
+    selected.list = [
+      ...selected.list.slice(0, slicePoint),
+      ...selected.list.slice(slicePoint + 1, selected.list.length)
+    ]
   }
 
   const toValidSelectList = (index: number): string[] => {
