@@ -31,12 +31,12 @@
   let keyword = ''
 
   let selected = {
-    index: DEFAULT_SELETED_INDEX as number,
+    index: DEFAULT_SELETED_INDEX,
     list: [] as string[]
   }
 
   $: hasSelectedItem = selected.index >= 0
-  $: cashedList = getItem?.(keyword) as string[]
+  $: cashedList = getItem?.<string[]>(keyword)
 
   const resetSelectedIndex = () => {
     hasSelectedItem && (selected.index = DEFAULT_SELETED_INDEX)
