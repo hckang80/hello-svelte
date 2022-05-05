@@ -32,7 +32,7 @@
 
   let selected = {
     index: DEFAULT_SELETED_INDEX,
-    list: [] as string[]
+    list: new Set<string>()
   }
 
   $: hasSelectedItem = selected.index >= 0
@@ -52,24 +52,11 @@
     searchedList.set(response)
   }, 500)
 
-  const deletedItem = (item: string) => {
-    const slicePoint = selected.list.indexOf(item)
-    return [
-      ...selected.list.slice(0, slicePoint),
-      ...selected.list.slice(slicePoint + 1, selected.list.length)
-    ]
-  }
-
-  const toValidSelectList = (index: number): string[] => {
-    const hasItem = selected.list.includes($searchedList[index])
-    const LIMIT = 5
-    const list = [
-      ...(hasItem
-        ? deletedItem($searchedList[index])
-        : selected.list),
-      $searchedList[index]
-    ].slice(-1 * LIMIT)
-    return list
+  const toValidSelectList = (index: number): Set<string> => {
+    const hasItem = selected.list.has($searchedList[index])
+    hasItem && selected.list.delete($searchedList[index])
+    selected.list.add($searchedList[index])
+    return selected.list
   }
 
   const selectList = (index: number) => {
