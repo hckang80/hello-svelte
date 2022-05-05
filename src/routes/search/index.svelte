@@ -52,7 +52,7 @@
     searchedList.set(response)
   }, 500)
 
-  const toValidSelectList = (index: number): Set<string> => {
+  const uniqueSelectedList = (index: number): Set<string> => {
     const hasItem = selected.list.has($searchedList[index])
     hasItem && selected.list.delete($searchedList[index])
     selected.list.add($searchedList[index])
@@ -62,7 +62,7 @@
   const selectList = (index: number) => {
     selected = {
       index,
-      list: toValidSelectList(index)
+      list: uniqueSelectedList(index)
     }
   }
 
