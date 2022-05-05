@@ -8,7 +8,7 @@ export let receive
 
 <div class="selected-list">
   <ul>
-    {#each [...list] as item (item)}
+    {#each list as item (item)}
       <li
         in:receive="{{key: item}}"
         out:send="{{key: item}}"

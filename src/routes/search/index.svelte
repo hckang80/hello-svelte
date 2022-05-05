@@ -26,6 +26,7 @@
 	})
 
   const DEFAULT_SELETED_INDEX = -1
+  const LIMIT = 5
   const BASE_URI = 'https://wr4a6p937i.execute-api.ap-northeast-2.amazonaws.com/dev'
 
   let keyword = ''
@@ -35,6 +36,9 @@
     list: new Set<string>()
   }
 
+  $: list = [...uniqueSelectedList(selected.index)]
+    .filter(Boolean)
+    .slice(-1 * LIMIT)
   $: hasSelectedItem = selected.index >= 0
   $: cashedList = getItem?.<string[]>(keyword)
 
@@ -94,7 +98,7 @@
 </svelte:head>
 
 <div class="Search">
-  <SelectedList {send} {receive} list={selected.list} />
+  <SelectedList {send} {receive} {list} />
 
   <form
     on:submit|preventDefault={() => {}}
