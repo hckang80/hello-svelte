@@ -98,7 +98,11 @@
 </svelte:head>
 
 <div class="Search">
-  <SelectedList {send} {receive} {list} />
+  <SelectedList
+    {send}
+    {receive}
+    {list}
+  />
 
   <form
     on:submit|preventDefault={() => {}}
