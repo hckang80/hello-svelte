@@ -36,7 +36,7 @@
     list: new Set<string>()
   }
 
-  $: list = [...uniqueSelectedList(selected.index)]
+  $: list = [...selected.list]
     .filter(Boolean)
     .slice(-1 * LIMIT)
   $: hasSelectedItem = selected.index >= 0
