@@ -57,9 +57,10 @@
   }, 500)
 
   const uniqueSelectedList = (index: number): Set<string> => {
-    const hasItem = selected.list.has($searchedList[index])
-    hasItem && selected.list.delete($searchedList[index])
-    selected.list.add($searchedList[index])
+    const selectedItem = $searchedList[index]
+    const hasItem = selected.list.has(selectedItem)
+    hasItem && selected.list.delete(selectedItem)
+    selected.list.add(selectedItem)
     return selected.list
   }
 
