@@ -46,7 +46,7 @@
     hasSelectedItem && (selected.index = DEFAULT_SELETED_INDEX)
   }
 
-  const searchList = debounce?.(async () => {
+  const searchList = debounce(async () => {
     if (!keyword) return searchedList.set([])
     const response =
       cashedList ||
@@ -90,7 +90,7 @@
         hasSelectedItem && selectList(selected.index)
       }
     }
-    events[event.key]?.()
+    events[event.key]()
 	}
 </script>
 
