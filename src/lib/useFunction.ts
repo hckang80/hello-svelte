@@ -1,4 +1,4 @@
-export const { localStorage: storage } = window
+export const { localStorage: storage } = globalThis
 
 export const getItem = <T = string>(key: string): T => {
   try {

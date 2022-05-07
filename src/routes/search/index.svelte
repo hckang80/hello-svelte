@@ -40,7 +40,7 @@
     .filter(Boolean)
     .slice(-1 * LIMIT)
   $: hasSelectedItem = selected.index >= 0
-  $: cashedList = getItem?.<string[]>(keyword)
+  $: cashedList = getItem<string[]>(keyword)
 
   const resetSelectedIndex = () => {
     hasSelectedItem && (selected.index = DEFAULT_SELETED_INDEX)
