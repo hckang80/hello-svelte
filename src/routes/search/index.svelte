@@ -90,7 +90,7 @@
         hasSelectedItem && selectList(selected.index)
       }
     }
-    events[event.key]()
+    events[event.key]?.()
 	}
 </script>
 
