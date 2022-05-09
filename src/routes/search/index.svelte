@@ -106,7 +106,6 @@
   />
 
   <form
-    on:submit|preventDefault={() => {}}
     class="search-form">
     <input
       type="text"
