@@ -1,6 +1,4 @@
 <script lang="ts">
-  // @ts-nocheck
-
   import { clickOutside, debounce, getItem, setItem, request } from '$lib/useFunction'
 	import { quintOut } from 'svelte/easing'
 	import { crossfade } from 'svelte/transition'

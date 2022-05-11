@@ -13,3 +13,10 @@ declare namespace App {
 
 	// interface Stuff {}
 }
+
+declare namespace svelte.JSX {
+  interface HTMLProps<T> {
+    onclick_outside?: (event: CustomEvent<T>) => void
+  }
+}
+
