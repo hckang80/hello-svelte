@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { debounce, getItem, setItem, request } from '$lib/useFunction'
+  // @ts-nocheck
+
+  import { clickOutside, debounce, getItem, setItem, request } from '$lib/useFunction'
 	import { quintOut } from 'svelte/easing'
 	import { crossfade } from 'svelte/transition'
   import { searchedList } from '../../stores'
@@ -92,6 +94,10 @@
     }
     events[event.key]?.()
 	}
+
+  function handleClickOutside(event) {
+    alert('Click outside!')
+  }
 </script>
 
 <svelte:head>
@@ -105,7 +111,10 @@
     {list}
   />
 
-  <div class="searched-form">
+  <div
+    use:clickOutside
+    on:click_outside={handleClickOutside}
+    class="searched-form">
     <form
       class="search-form">
       <input
