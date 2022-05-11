@@ -73,7 +73,7 @@
     }
   }
 
-	function handleKeydown(event) {
+	const handleKeydown = (event) => {
     if (!$searchedList.length) return
 
     const events = {
@@ -95,7 +95,7 @@
     events[event.key]?.()
 	}
 
-  function handleClickOutside(event) {
+  const handleClickOutside = (event) => {
     alert('Click outside!')
   }
 </script>
