@@ -105,23 +105,25 @@
     {list}
   />
 
-  <form
-    class="search-form">
-    <input
-      type="text"
-      placeholder="프로그래밍 언어를 입력하세요."
-      class="search-form__input"
-      bind:value={keyword}
-      on:input={searchList}
-    />
-  </form>
+  <div class="searched-form">
+    <form
+      class="search-form">
+      <input
+        type="text"
+        placeholder="프로그래밍 언어를 입력하세요."
+        class="search-form__input"
+        bind:value={keyword}
+        on:input={searchList}
+      />
+    </form>
 
-  {#if $searchedList.length}
-  <SearchedList
-    selectedIndex={selected.index}
-    {selectList}
-  />
-  {/if}
+    {#if $searchedList.length}
+    <SearchedList
+      selectedIndex={selected.index}
+      {selectList}
+    />
+    {/if}
+  </div>
 </div>
 
 <svelte:window on:keydown={handleKeydown}/>
