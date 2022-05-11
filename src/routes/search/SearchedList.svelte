@@ -1,13 +1,19 @@
 <script>
+// @ts-nocheck
+
+import { clickOutside } from '$lib/useFunction'
 import { fade } from 'svelte/transition'
 import { searchedList } from '../../stores'
 
 export let selectedIndex
 export let selectList
+
+function handleClickOutside(event) {
+  alert('Click outside!')
+}
 </script>
 
-
-<div transition:fade="{{ duration: 100 }}" class="searched-list">
+<div use:clickOutside on:click_outside={handleClickOutside} transition:fade="{{ duration: 100 }}" class="searched-list">
   <ul class="suggestion">
     {#each $searchedList as item, index}
       <li
