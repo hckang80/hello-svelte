@@ -93,7 +93,7 @@
     events[event.key]?.()
 	}
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = (event: CustomEvent<HTMLDivElement>) => {
     alert('Click outside!')
   }
 </script>
