@@ -94,7 +94,7 @@
 	}
 
   const handleClickOutside = (event: CustomEvent<HTMLDivElement>) => {
-    alert('Click outside!')
+    $searchedList.length && searchedList.set([])
   }
 </script>
 
