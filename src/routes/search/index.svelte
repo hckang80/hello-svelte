@@ -2,7 +2,7 @@
   import { clickOutside, debounce, getItem, setItem, request } from '$lib/useFunction'
 	import { quintOut } from 'svelte/easing'
 	import { crossfade } from 'svelte/transition'
-  import { searchedList } from '../../stores'
+  import { searchedList } from '$stores'
 
   import SelectedList from './SelectedList.svelte'
   import SearchedList from './SearchedList.svelte'
